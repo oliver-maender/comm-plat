@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'comm-plat';
+  auth = false;
+
+  authenticate(authState: boolean, email: string) {
+    this.auth = authState;
+    console.log(email);
+  }
 }

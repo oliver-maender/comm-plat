@@ -1,0 +1,12 @@
+<mat-toolbar class="open" color="primary" #sidenav>
+  <mat-toolbar-row>
+    <span #name>Group 1</span>
+    <span class="menu-spacer"></span>
+    <button mat-icon-button class="menu-icon" (click)="toggleSidenav(sidenav, name)">
+      <mat-icon>menu</mat-icon>
+    </button>
+  </mat-toolbar-row>
+</mat-toolbar>
+<mat-nav-list>
+  <a mat-list-item [routerLink]="['channel', link]" *ngFor="let link of links"> {{ link }} </a>
+</mat-nav-list>

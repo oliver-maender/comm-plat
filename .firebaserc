@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "commplat-960d7": {
+      "hosting": {
+        "comm-plat": [
+          "commplat-960d7"
+        ]
+      }
+    }
+  }
+}

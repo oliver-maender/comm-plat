@@ -1,0 +1,19 @@
+<div class="form-container">
+  <div class="form-headline">
+    <h2>Log in to CommPlat</h2>
+  </div>
+  <form #myForm="ngForm" (ngSubmit)="onSubmit(myForm)" ngNativeValidate class="auth-form">
+    <mat-form-field appearance="fill">
+      <mat-label>E-Mail address</mat-label>
+      <input type="email" name="email" ngModel matInput placeholder="E-Mail" #email="ngModel" required email>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Password</mat-label>
+      <input type="password" name="password" ngModel matInput placeholder="Password" #password="ngModel" required
+        password>
+    </mat-form-field>
+    <div class="submit-button">
+      <button mat-flat-button color="primary" [disabled]="!myForm.valid">Send</button>
+    </div>
+  </form>
+</div>
