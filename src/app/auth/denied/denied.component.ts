@@ -18,6 +18,9 @@ export class DeniedComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  /**
+   * Closes the dialog when clicked on ok.
+   */
   onOkClick() {
     this.dialogRef.close();
   }

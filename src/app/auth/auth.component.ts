@@ -1,21 +1,10 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 
-import { take } from 'rxjs/operators';
-import { environment } from 'src/environments/environment';
-import { UserService } from '../shared/user.service';
+import { AuthService } from './auth.service';
 import { DeniedComponent } from './denied/denied.component';
-
-interface AuthResponseData {
-  idToken: string;
-  email: string;
-  refreshToken: string;
-  expiresIn: string;
-  localId: string;
-  registered: boolean;
-}
 
 @Component({
   selector: 'app-auth',
@@ -24,36 +13,66 @@ interface AuthResponseData {
 })
 export class AuthComponent implements OnInit {
 
-  @Output() authentication = new EventEmitter<{ registered: boolean, email: string }>();
+  loginMode = true;
+  loading = false;
 
-  constructor(private http: HttpClient, private dialog: MatDialog, private userService: UserService) { }
+  constructor(private dialog: MatDialog, private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
   }
 
-  onSubmit(myForm: NgForm) {
-    if (myForm.valid) {
-      this.http.post<AuthResponseData>(`https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${environment.firebase.apiKey}`, {
-        email: myForm.value.email,
-        password: myForm.value.password,
-        returnSecureToken: true
-      }).pipe(take(1)).subscribe((resData) => {
-        this.authentication.next({ registered: true, email: resData.email });
-        this.userService.setCurrentUser(resData.email);
-        console.log(resData);
-      }, (errorRes) => {
-        if (errorRes.error.error.message === 'EMAIL_NOT_FOUND') {
-          this.openDeniedDialog('There is no user with this email address.');
-        } else if (errorRes.error.error.message === 'INVALID_PASSWORD') {
-          this.openDeniedDialog('Wrong password.');
-        } else {
-          this.openDeniedDialog(errorRes.error.error.message);
-        }
-        console.log(errorRes);
-      });
-    }
+  /**
+   * Switches between loginMode and not loginMode to determine if a user wants to log in or sign up.
+   */
+  onSwitchMode() {
+    this.loginMode = !this.loginMode;
   }
 
+  /**
+   * Manages the login and submit routine depending on in which mode the user is.
+   *
+   * @param {NgForm} myForm - The form submitted
+   * @returns
+   */
+  onSubmit(myForm: NgForm) {
+    if (!myForm.valid) {
+      return;
+    }
+    const email = myForm.value.email;
+    const password = myForm.value.password;
+
+    this.loading = true;
+
+    if (this.loginMode) {
+      this.authService.login(email, password).then((resData) => {
+        console.log(resData);
+        this.loading = false;
+        this.router.navigate(['/']);
+      }).catch((errorMessage) => {
+        console.log(errorMessage);
+        this.openDeniedDialog(errorMessage);
+        this.loading = false;
+      });
+    } else {
+      this.authService.signup(email, password).then((resData) => {
+        console.log(resData);
+        this.loading = false;
+        this.router.navigate(['/']);
+      }).catch((errorMessage) => {
+        console.log(errorMessage);
+        this.openDeniedDialog(errorMessage);
+        this.loading = false;
+      });
+    }
+
+    myForm.reset();
+  }
+
+  /**
+   * Opens the error dialog if an error occured.
+   *
+   * @param error - The error message
+   */
   openDeniedDialog(error: string) {
     this.dialog.open(DeniedComponent, {
       data: { message: error }

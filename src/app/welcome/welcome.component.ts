@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../shared/user.service';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-welcome',
@@ -8,12 +8,12 @@ import { UserService } from '../shared/user.service';
 })
 export class WelcomeComponent implements OnInit {
 
-  user = '';
+  userEmail = '';
 
-  constructor(private userService: UserService) { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
-    this.user = this.userService.currentUsername;
+    this.userEmail = this.authService.userEmail;
   }
 
 }

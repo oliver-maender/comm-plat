@@ -5,15 +5,15 @@ import { Injectable } from '@angular/core';
 })
 export class UserService {
 
-  currentUser = '';
+  // currentUser = '';
 
-  constructor() { }
+  // constructor() { }
 
-  get currentUsername() {
-    return this.currentUser;
-  }
+  // get currentUsername() {
+  //   return this.currentUser;
+  // }
 
-  setCurrentUser(username: string) {
-    this.currentUser = username;
-  }
+  // setCurrentUser(username: string) {
+  //   this.currentUser = username;
+  // }
 }

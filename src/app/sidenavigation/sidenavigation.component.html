@@ -2,11 +2,24 @@
   <mat-toolbar-row>
     <span #name>Group 1</span>
     <span class="menu-spacer"></span>
-    <button mat-icon-button class="menu-icon" (click)="toggleSidenav(sidenav, name)">
+    <button mat-icon-button class="menu-icon" (click)="toggleSidenavs(sidenav, name, sidenav2, name2)">
       <mat-icon>menu</mat-icon>
     </button>
   </mat-toolbar-row>
 </mat-toolbar>
 <mat-nav-list>
-  <a mat-list-item [routerLink]="['channel', link]" *ngFor="let link of links"> {{ link }} </a>
+  <a mat-list-item [routerLink]="'/channel/' + link" *ngFor="let link of links"> {{ link }} </a>
 </mat-nav-list>
+
+<mat-toolbar class="open" color="primary" #sidenav2>
+  <mat-toolbar-row>
+    <span #name2>DM</span>
+    <span class="menu-spacer"></span>
+  </mat-toolbar-row>
+</mat-toolbar>
+<mat-nav-list>
+  <a mat-list-item [routerLink]="'/dm/' + user.id" *ngFor="let user of users"> {{ user.email }} </a>
+</mat-nav-list>
+<button mat-fab color="primary" (click)="showUserList()">
+  <mat-icon>add</mat-icon>
+</button>

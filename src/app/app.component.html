@@ -1,12 +1,14 @@
-<div class="no-auth" *ngIf="!auth">
-  <app-auth (authentication)="authenticate($event.registered, $event.email)"></app-auth>
+<!-- <div class="no-auth" *ngIf="!authenticated && loaded">
+  <app-auth></app-auth>
 </div>
 
-<div class="auth" *ngIf="auth">
+<div class="auth" *ngIf="authenticated && loaded">
   <app-header></app-header>
   <div class="main-view">
     <app-sidenavigation></app-sidenavigation>
     <router-outlet></router-outlet>
   </div>
   <app-footer></app-footer>
-</div>
+</div> -->
+
+<router-outlet></router-outlet>

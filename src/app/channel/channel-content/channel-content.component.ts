@@ -1,6 +1,8 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFireAuth } from '@angular/fire/auth';
 import { Subscription } from 'rxjs';
+import { AuthService } from 'src/app/auth/auth.service';
+import { MessagesService } from 'src/app/shared/messages.service';
 
 @Component({
   selector: 'app-channel-content',
@@ -13,31 +15,40 @@ export class ChannelContentComponent implements OnInit, OnChanges {
 
   messages: Array<{ author: string, message: string }> = [];
 
-  channelMessageSubscriptions!: Subscription;
+  userSubscription!: Subscription;
+  authStateSubscription!: Subscription;
+  channelMessageSubscription!: Subscription;
 
-  constructor(private firestore: AngularFirestore) { }
+  constructor(private messagesService: MessagesService, private authService: AuthService, private auth: AngularFireAuth) { }
 
+  /**
+   * It unsubscribes if already subscribed to and subscribes again (when switching a channel so it subscribes to the right channel).
+   *
+   * @param {SimpleChanges} changes - A hashtable of changes
+   */
   ngOnChanges(changes: SimpleChanges): void {
     console.log('change', changes);
-    if (this.channelMessageSubscriptions) {
-      this.channelMessageSubscriptions.unsubscribe();
+    if (this.channelMessageSubscription) {
+      this.channelMessageSubscription.unsubscribe();
     }
-    this.getMessages();
+    if (this.userSubscription) {
+      this.userSubscription.unsubscribe();
+    }
+    if (this.authStateSubscription) {
+      this.authStateSubscription.unsubscribe();
+    }
+
+    this.userSubscription = this.authService.user.subscribe((user) => {
+      this.auth.authState.subscribe((user) => {
+        if (user) {
+          this.channelMessageSubscription = this.messagesService.getMessages(this.channelName).subscribe((messages: any) => {
+            this.messages = messages;
+          });
+        }
+      });
+    });
   }
 
   ngOnInit(): void { }
 
-  getMessages() {
-    this.channelMessageSubscriptions = this.firestore.collection('group1-messages').doc(`${this.channelName}-messages`).valueChanges().subscribe((messages: any) => {
-      this.messages = [];
-      for (const message in messages) {
-        if (Object.prototype.hasOwnProperty.call(messages, message)) {
-          const element = messages[message];
-          this.messages.push(element);
-        }
-      }
-      console.log(messages);
-      console.log(this.messages);
-    });
-  }
 }

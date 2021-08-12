@@ -1,0 +1,12 @@
+<div class="dm-comp-container">
+  <app-header></app-header>
+  <div class="main-view">
+    <app-sidenavigation></app-sidenavigation>
+    <div class="dm-container">
+      <app-dm-header [recipientName]="recipientName"></app-dm-header>
+      <app-dm-content></app-dm-content>
+      <app-dm-new-message [recipientName]="recipientName"></app-dm-new-message>
+    </div>
+  </div>
+  <app-footer></app-footer>
+</div>

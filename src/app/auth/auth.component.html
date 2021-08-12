@@ -1,8 +1,11 @@
 <div class="form-container">
   <div class="form-headline">
-    <h2>Log in to CommPlat</h2>
+    <h2>{{ loginMode ? 'Log In' : 'Sing Up' }} to CommPlat</h2>
   </div>
-  <form #myForm="ngForm" (ngSubmit)="onSubmit(myForm)" ngNativeValidate class="auth-form">
+  <div class="loading-container" *ngIf="loading">
+    <p>Loading...</p>
+  </div>
+  <form #myForm="ngForm" (ngSubmit)="onSubmit(myForm)" ngNativeValidate class="auth-form" *ngIf="!loading">
     <mat-form-field appearance="fill">
       <mat-label>E-Mail address</mat-label>
       <input type="email" name="email" ngModel matInput placeholder="E-Mail" #email="ngModel" required email>
@@ -10,10 +13,16 @@
     <mat-form-field appearance="fill">
       <mat-label>Password</mat-label>
       <input type="password" name="password" ngModel matInput placeholder="Password" #password="ngModel" required
-        password>
+        password minlength="8">
     </mat-form-field>
-    <div class="submit-button">
-      <button mat-flat-button color="primary" [disabled]="!myForm.valid">Send</button>
+    <div class="all-buttons">
+      <div class="submit-button">
+        <button mat-raised-button color="primary" [disabled]="!myForm.valid" type="submit">{{ loginMode ? 'Log In' :
+          'Sing Up' }}</button>
+      </div>
+      <div class="switch-button">
+        <button mat-raised-button color="basic" type="button" (click)="onSwitchMode()">Switch to {{ loginMode ? 'Sing Up' : 'Login' }}</button>
+      </div>
     </div>
   </form>
 </div>

@@ -28,6 +28,10 @@ import { ChannelHeaderComponent } from './channel/channel-header/channel-header.
 import { AuthComponent } from './auth/auth.component';
 import { DeniedComponent } from './auth/denied/denied.component';
 import { WelcomeComponent } from './welcome/welcome.component';
+import { DmComponent } from './dm/dm.component';
+import { DmHeaderComponent } from './dm/dm-header/dm-header.component';
+import { DmContentComponent } from './dm/dm-content/dm-content.component';
+import { DmNewMessageComponent } from './dm/dm-new-message/dm-new-message.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +45,11 @@ import { WelcomeComponent } from './welcome/welcome.component';
     ChannelHeaderComponent,
     AuthComponent,
     DeniedComponent,
-    WelcomeComponent
+    WelcomeComponent,
+    DmComponent,
+    DmHeaderComponent,
+    DmContentComponent,
+    DmNewMessageComponent
   ],
   imports: [
     BrowserModule,
