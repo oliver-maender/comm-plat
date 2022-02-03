@@ -1,11 +1,38 @@
+mat-toolbar {
+  background-color: #abcdef;
+}
+
 .menu-spacer {
   flex: 1 1 auto;
 }
 
 .open {
-  width: 300px;
+  @media (min-width: 1050px) {
+    width: 300px;
+  }
 }
 
 .d-none {
   display: none;
+}
+
+.info-icon {
+  height: 12px;
+  width: 12px;
+  font-size: 12px;
+  margin-left: 4px;
+}
+
+.button-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.new-message {
+  font-weight: 700;
+}
+
+.information {
+  margin: 8px;
 }

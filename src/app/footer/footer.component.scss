@@ -1,0 +1,43 @@
+footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 32px;
+  padding-bottom: 32px;
+  background-color: rgb(220, 220, 220);
+  margin-top: 32px;
+}
+
+.links {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+
+  a {
+      text-decoration: none;
+      color: black;
+  }
+}
+
+.licenses {
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+
+.logo-container {
+  height: 80px;
+}
+
+.logo-container img {
+  height: 100%;
+  object-fit: contain;
+}
+
+@media (max-width: 1050px) {
+  footer {
+      flex-direction: column;
+      align-items: center;
+      padding-top: 16px;
+      padding-bottom: 16px;
+  }
+}

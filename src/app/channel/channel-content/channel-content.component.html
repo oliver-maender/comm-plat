@@ -1,1 +1,19 @@
-<h3 *ngFor="let message of messages">{{ message.author }} - {{ message.message }}</h3>
+<div *ngFor="let message of messages; let i = index">
+  <div class="main-message-container">
+    <h3 class="main-message" *ngIf="!message.format">{{ message.author }} - <span>{{ message.message }}</span></h3>
+    <h3 class="main-message" *ngIf="message.format">{{ message.author }} - <pre>{{ message.message }}</pre></h3>
+    <button class="reply-button" mat-raised-button (click)="isReplying = i">Reply</button>
+  </div>
+  <mat-accordion *ngIf="message.responses">
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Replies ({{ message.responses.length }})
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <h4 class="message-responses" *ngFor="let response of message.responses">{{ response.author }} - <span>{{ response.message }}</span></h4>
+    </mat-expansion-panel>
+  </mat-accordion>
+  <app-channel-content-new-reply (closeTextfield)="closeTextfield()" [channelName]="channelName" [index]="i" *ngIf="isReplying === i"></app-channel-content-new-reply>
+  <hr>
+</div>

@@ -1,8 +1,8 @@
-<form class="new-message-form" #myForm="ngForm" (ngSubmit)="onSubmit(myForm)" ngNativeValidate>
+<form #myForm="ngForm" (ngSubmit)="onSubmit(myForm)" ngNativeValidate class="new-message-form">
   <mat-form-field class="new-message-full-width" appearance="fill">
     <mat-label>Write a new message</mat-label>
     <textarea name="message" ngModel matInput placeholder="Message" #message="ngModel" [matTextareaAutosize]=true
-      [matAutosizeMinRows]=2 required></textarea>
+      [matAutosizeMinRows]=10 required></textarea>
   </mat-form-field>
   <div class="submit-button">
     <button mat-flat-button color="primary" [disabled]="!myForm.valid">Send</button>

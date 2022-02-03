@@ -5,7 +5,7 @@ import { User } from './user.model';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { map, take } from 'rxjs/operators';
+import { take } from 'rxjs/operators';
 
 // interface AuthResponseData {
 //   idToken: string;
@@ -140,7 +140,7 @@ export class AuthService {
   }
 
   /**
-   * Logs the user out and removes his data in the local storage.
+   * Logs the user out and removes his data from local storage.
    */
   logout() {
     this.user.next(null);
@@ -188,21 +188,12 @@ export class AuthService {
    */
   private createUserData() {
     this.firestore.collection(`user-${this.userData.id}`).doc('info').set({ email: this.userData.email });
+    this.firestore.collection(`user-${this.userData.id}`).doc('recipients-names').set({});
+    this.firestore.collection(`user-${this.userData.id}`).doc('recipients-status').set({ nextRecipientId: 0 });
     this.firestore.collection('users').doc('amount').get().pipe(take(1)).subscribe((amountData: any) => {
       let currentUser = amountData.data().userAmount;
       this.firestore.collection('users').doc('list').update({ [currentUser]: { 'email': this.userData.email, 'id': this.userData.id } });
       this.firestore.collection('users').doc('amount').set({ 'userAmount': currentUser + 1 });
     });
-  }
-
-  /**
-   * Returns the list of all users.
-   *
-   * @returns The list of all users
-   */
-  showUserList() {
-    return this.firestore.collection('users').doc('list').get().pipe(take(1), map((userList) => {
-      return userList.data();
-    }));
   }
 }

@@ -1,0 +1,11 @@
+<h1 mat-dialog-title>Send DM</h1>
+<div mat-dialog-content>
+  <mat-nav-list class="nav-list">
+    <span *ngIf="!userListLoaded">Loading...</span>
+    <a mat-list-item [routerLink]="'/dm/' + user.id" *ngFor="let user of users" (click)="closeDialog()"> {{ user.email
+      }} </a>
+  </mat-nav-list>
+</div>
+<div mat-dialog-actions>
+  <button mat-raised-button color="secondary" (click)="closeDialog()">Close</button>
+</div>

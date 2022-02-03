@@ -18,4 +18,11 @@ export class ChannelComponent implements OnInit {
     });
   }
 
+  /**
+   * Scrolls to the top of the page.
+   */
+  scrollUp() {
+    window.scrollTo(0, 0);
+  }
+
 }

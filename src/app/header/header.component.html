@@ -2,7 +2,12 @@
   <div class="website-name">
     <span>CommPlat</span>
   </div>
-  <div class="logout-container" *ngIf="authenticated">
-    <a (click)="onLogout()">Log out</a>
-  </div>
+  <!-- <div class="right-side-container"> -->
+    <!-- <div class="show-name-container" *ngIf="authenticated">
+      <span>Logged in as: {{ userEmail }}</span>
+    </div> -->
+    <div class="logout-container" *ngIf="authenticated">
+      <a (click)="onLogout()">Log out</a>
+    </div>
+  <!-- </div> -->
 </mat-toolbar>

@@ -14,4 +14,11 @@ export class ChannelHeaderComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  /**
+   * Scrolls down to the bottom of the page.
+   */
+  scrollDown() {
+    window.scrollTo(0, document.body.scrollHeight);
+  }
+
 }

@@ -1,25 +1,44 @@
-<mat-toolbar class="open" color="primary" #sidenav>
+<mat-toolbar>
   <mat-toolbar-row>
-    <span #name>Group 1</span>
+    <span>Channels</span>
     <span class="menu-spacer"></span>
-    <button mat-icon-button class="menu-icon" (click)="toggleSidenavs(sidenav, name, sidenav2, name2)">
+    <!-- <button mat-icon-button class="menu-icon" (click)="toggleSidenavs(sidenav, name, sidenav2, name2)">
       <mat-icon>menu</mat-icon>
-    </button>
+    </button> -->
   </mat-toolbar-row>
 </mat-toolbar>
 <mat-nav-list>
   <a mat-list-item [routerLink]="'/channel/' + link" *ngFor="let link of links"> {{ link }} </a>
 </mat-nav-list>
 
-<mat-toolbar class="open" color="primary" #sidenav2>
+<mat-toolbar>
   <mat-toolbar-row>
-    <span #name2>DM</span>
+    <span>DM</span>
+    <mat-icon class="info-icon" matTooltip="All the users you already had contact with">info</mat-icon>
     <span class="menu-spacer"></span>
   </mat-toolbar-row>
 </mat-toolbar>
 <mat-nav-list>
-  <a mat-list-item [routerLink]="'/dm/' + user.id" *ngFor="let user of users"> {{ user.email }} </a>
+  <a mat-list-item [routerLink]="'/dm/' + user.id" *ngFor="let user of contactedUsers" [class.new-message]="newMessage.includes(user.id)"> {{ user.email }} </a>
 </mat-nav-list>
-<button mat-fab color="primary" (click)="showUserList()">
-  <mat-icon>add</mat-icon>
-</button>
+
+<!-- <mat-toolbar class="open" #sidenav3>
+  <mat-toolbar-row>
+    <span #name3>All Users</span>
+    <mat-icon class="info-icon" matTooltip="All the users you can contact">info</mat-icon>
+    <span class="menu-spacer"></span>
+  </mat-toolbar-row>
+</mat-toolbar> -->
+<!-- <mat-nav-list>
+  <a mat-list-item [routerLink]="'/dm/' + user.id" *ngFor="let user of users"> {{ user.email }} </a>
+</mat-nav-list> -->
+<div class="button-container">
+  <div class="add-button-container">
+    <button mat-fab color="primary" matTooltip="View all users" (click)="openDialogShowUserList()">
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+</div>
+<div class="information">
+  <span>You are:<br>{{ userEmail }}</span>
+</div>

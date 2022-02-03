@@ -13,6 +13,9 @@ import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { HttpClientModule } from '@angular/common/http';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
@@ -32,6 +35,8 @@ import { DmComponent } from './dm/dm.component';
 import { DmHeaderComponent } from './dm/dm-header/dm-header.component';
 import { DmContentComponent } from './dm/dm-content/dm-content.component';
 import { DmNewMessageComponent } from './dm/dm-new-message/dm-new-message.component';
+import { ChannelContentNewReplyComponent } from './channel/channel-content/channel-content-new-reply/channel-content-new-reply.component';
+import { DialogShowUserListComponent } from './dialog-show-user-list/dialog-show-user-list.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +54,9 @@ import { DmNewMessageComponent } from './dm/dm-new-message/dm-new-message.compon
     DmComponent,
     DmHeaderComponent,
     DmContentComponent,
-    DmNewMessageComponent
+    DmNewMessageComponent,
+    ChannelContentNewReplyComponent,
+    DialogShowUserListComponent
   ],
   imports: [
     BrowserModule,
@@ -65,7 +72,10 @@ import { DmNewMessageComponent } from './dm/dm-new-message/dm-new-message.compon
     FormsModule,
     MatFormFieldModule,
     HttpClientModule,
-    MatDialogModule
+    MatDialogModule,
+    MatTooltipModule,
+    MatExpansionModule,
+    MatSidenavModule
   ],
   providers: [],
   bootstrap: [AppComponent]

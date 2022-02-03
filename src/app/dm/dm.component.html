@@ -1,12 +1,24 @@
 <div class="dm-comp-container">
   <app-header></app-header>
-  <div class="main-view">
-    <app-sidenavigation></app-sidenavigation>
-    <div class="dm-container">
-      <app-dm-header [recipientName]="recipientName"></app-dm-header>
-      <app-dm-content></app-dm-content>
-      <app-dm-new-message [recipientName]="recipientName"></app-dm-new-message>
-    </div>
-  </div>
+  <mat-sidenav-container>
+    <mat-sidenav #sidenav mode="side">
+      <app-sidenavigation></app-sidenavigation>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <button mat-icon-button class="menu-icon" (click)="sidenav.toggle()">
+        <mat-icon>menu</mat-icon><span>Menu</span>
+      </button>
+      <div class="dm-container">
+        <app-dm-header [recipientName]="recipientName"></app-dm-header>
+        <app-dm-content [recipientName]="recipientName"></app-dm-content>
+        <app-dm-new-message [recipientName]="recipientName"></app-dm-new-message>
+        <div style="margin-top: 32px;">
+          <button mat-icon-button (click)="scrollUp()">
+            <mat-icon>arrow_upward</mat-icon> top
+          </button>
+        </div>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
   <app-footer></app-footer>
 </div>

@@ -1,0 +1,27 @@
+span {
+  background-color: rgba(110, 230, 0, 0.2);
+  padding: 4px;
+  border-radius: 8px;
+}
+
+.main-message-container {
+  display: flex;
+  align-items: center;
+  margin-top: 16px;
+  box-sizing: border-box;
+
+  h3 {
+    margin: 0;
+  }
+}
+
+.reply-button {
+  height: 24px;
+  font-size: 12px;
+  line-height: 0;
+  margin-left: 16px;
+}
+
+.message-responses {
+  margin-left: 32px;
+}
