@@ -8,6 +8,7 @@ span {
   display: flex;
   align-items: center;
   margin-top: 16px;
+  margin-bottom: 16px;
   box-sizing: border-box;
 
   h3 {
@@ -24,4 +25,8 @@ span {
 
 .message-responses {
   margin-left: 32px;
+}
+
+.horizontal-line {
+  margin-top: 16px;
 }

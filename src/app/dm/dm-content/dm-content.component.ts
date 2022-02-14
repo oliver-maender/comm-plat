@@ -31,7 +31,6 @@ export class DmContentComponent implements OnInit, OnChanges, OnDestroy {
   */
   ngOnChanges(changes: SimpleChanges): void {
     this.messages = [];
-    console.log('change', changes);
     if (this.channelMessageSubscription) {
       this.channelMessageSubscription.unsubscribe();
     }

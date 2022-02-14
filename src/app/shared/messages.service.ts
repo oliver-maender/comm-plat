@@ -29,8 +29,6 @@ export class MessagesService {
           this.messages.push(element);
         }
       }
-      console.log(messages);
-      console.log(this.messages);
       return this.messages;
     }));
   }
@@ -52,8 +50,6 @@ export class MessagesService {
           this.messages.push(element);
         }
       }
-      console.log(messages);
-      console.log(this.messages);
       return this.messages;
     }));
   }
@@ -70,7 +66,6 @@ export class MessagesService {
     this.firestore.collection('group1-messages').doc(`${channel}-messages`).get().pipe(take(1)).subscribe((res: any) => {
       let messages = res.data();
       let message = messages[index];
-      console.log(message);
       let responses = [];
       if (message.responses) {
         for (let i = 0; i < Object.keys(message.responses).length; i++) {

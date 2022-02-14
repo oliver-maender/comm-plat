@@ -20,8 +20,6 @@ export class NoAuthGuard implements CanActivate {
     return this.authService.user.pipe(take(1), map((user) => {
       const isAuth = !!user;
 
-      console.log(user);
-
       if (!isAuth) {
         return true;
       }

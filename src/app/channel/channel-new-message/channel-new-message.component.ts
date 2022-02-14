@@ -33,7 +33,6 @@ export class ChannelNewMessageComponent implements OnInit {
       this.firestore.collection('group1-messages').doc(`${this.channelName}-status`).get().pipe(take(1)).subscribe((status: any) => {
         let data = status.data();
         this.nextMessageId = data.nextMessageId;
-        console.log(this.nextMessageId);
         let newMessage = myForm.value.message;
         let userEmail = this.authService.userEmail;
         this.firestore.collection('group1-messages').doc(`${this.channelName}-messages`).update({ [this.nextMessageId]: { author: `${userEmail}`, message: newMessage } });

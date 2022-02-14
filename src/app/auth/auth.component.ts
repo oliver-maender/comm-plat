@@ -45,21 +45,17 @@ export class AuthComponent implements OnInit {
 
     if (this.loginMode) {
       this.authService.login(email, password).then((resData) => {
-        console.log(resData);
         this.loading = false;
         this.router.navigate(['/']);
       }).catch((errorMessage) => {
-        console.log(errorMessage);
         this.openDeniedDialog(errorMessage);
         this.loading = false;
       });
     } else {
       this.authService.signup(email, password).then((resData) => {
-        console.log(resData);
         this.loading = false;
         this.router.navigate(['/']);
       }).catch((errorMessage) => {
-        console.log(errorMessage);
         this.openDeniedDialog(errorMessage);
         this.loading = false;
       });

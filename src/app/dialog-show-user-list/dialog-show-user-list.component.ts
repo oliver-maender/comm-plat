@@ -29,7 +29,6 @@ export class DialogShowUserListComponent implements OnInit, OnDestroy {
     this.authStateSubscription = this.auth.authState.subscribe((user) => {
       this.dataService.showUserList().pipe(take(1)).subscribe((resData: any) => {
         this.users = [];
-        console.log(resData);
         for (const user in resData) {
           if (Object.prototype.hasOwnProperty.call(resData, user)) {
             const element = resData[user];

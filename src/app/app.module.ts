@@ -37,6 +37,8 @@ import { DmContentComponent } from './dm/dm-content/dm-content.component';
 import { DmNewMessageComponent } from './dm/dm-new-message/dm-new-message.component';
 import { ChannelContentNewReplyComponent } from './channel/channel-content/channel-content-new-reply/channel-content-new-reply.component';
 import { DialogShowUserListComponent } from './dialog-show-user-list/dialog-show-user-list.component';
+import { LegalNoticeComponent } from './legal-notice/legal-notice.component';
+import { DataPrivacyComponent } from './data-privacy/data-privacy.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +58,9 @@ import { DialogShowUserListComponent } from './dialog-show-user-list/dialog-show
     DmContentComponent,
     DmNewMessageComponent,
     ChannelContentNewReplyComponent,
-    DialogShowUserListComponent
+    DialogShowUserListComponent,
+    LegalNoticeComponent,
+    DataPrivacyComponent
   ],
   imports: [
     BrowserModule,

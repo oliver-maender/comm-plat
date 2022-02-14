@@ -55,11 +55,9 @@ export class AuthService {
    */
   signup(email: string, password: string) {
     return this.auth.createUserWithEmailAndPassword(email, password).then((resData) => {
-      console.log(resData);
       this.authenticationHandling(resData.user.email, resData.user.uid, '', 3600, false);
       return resData;
     }).catch((error) => {
-      console.log(error);
       throw error.message;
     });
 
@@ -83,11 +81,9 @@ export class AuthService {
    */
   login(email: string, password: string) {
     return this.auth.signInWithEmailAndPassword(email, password).then((resData) => {
-      console.log(resData);
       this.authenticationHandling(resData.user.email, resData.user.uid, '', 3600, true);
       return resData;
     }).catch((error) => {
-      console.log(error);
       throw error.message;
     });
 
@@ -124,19 +120,6 @@ export class AuthService {
       const expirationDuration = new Date(userData._tokenExpirationDate).getTime() - new Date().getTime();
       this.autoLogout(expirationDuration);
     }
-
-    // this.auth.authState.subscribe((user) => {
-    //   console.log("US", user);
-    //   if (user.uid != userData.id) {
-    //     this.logout();
-    //     return;
-    //   }
-    //   if (user.email != userData.email) {
-    //     this.logout();
-    //     return;
-    //   }
-    // });
-
   }
 
   /**

@@ -25,19 +25,6 @@ export class DataService {
     }));
   }
 
-  // showContactedUserList() {
-  //   return this.firestore.collection(`user-${this.authService.userId}`).doc('recipients-names').get().pipe(take(1), map((users) => {
-  //     return users.data();
-  //   }));
-  // }
-
-  // updateContactedUserArray() {
-  //   this.firestore.collection(`user-${this.authService.userId}`).doc('recipients-names').get().pipe(take(1)).subscribe((users) => {
-  //     let usersData = users.data();
-  //     this.changeContactedUserArray.next(usersData);
-  //   });
-  // }
-
   /**
    * Returns the list of all contacted users.
    *
@@ -72,8 +59,6 @@ export class DataService {
         const element = userData[i];
         userDataArray.push(element);
       }
-      console.log(userDataArray);
-      console.log(userData);
       let fromIndex = userDataArray.findIndex(recToR => recToR['id'] === recId);
       if (fromIndex > -1) {
         let element = userDataArray[fromIndex];
@@ -83,15 +68,6 @@ export class DataService {
       this.firestore.collection(`user-${userId}`).doc('recipients-names').set({ ...userDataArray });
     });
   }
-
-  // updateContactedUserList(userId: string) {
-  //   let userEmail = '';
-  //   this.firestore.collection(`user-${userId}`).doc('info').get().pipe(take(1)).subscribe((email: any) => {
-  //     let data = email.data();
-  //     userEmail = data.email;
-  //     this.firestore.collection(`user-${this.authService.userId}`).doc('recipients-names').update({ id: userId, email: userEmail });
-  //   });
-  // }
 
   /**
    * Triggers when a user is contacted and so the list needs to be reordered, so that the most recently contacted user is always on top.

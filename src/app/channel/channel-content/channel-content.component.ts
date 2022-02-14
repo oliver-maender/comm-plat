@@ -33,7 +33,6 @@ export class ChannelContentComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     this.messages = [];
     this.isReplying = -1;
-    console.log('change', changes);
     // if (this.channelMessageSubscription) {
     //   this.channelMessageSubscription.unsubscribe();
     // }
