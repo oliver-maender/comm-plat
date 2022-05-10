@@ -19,6 +19,7 @@
   </mat-toolbar-row>
 </mat-toolbar>
 <mat-nav-list>
+  <p class="loading-placeholder" *ngIf="contactedUsers.length < 1">Loading...</p>
   <a mat-list-item [routerLink]="'/dm/' + user.id" *ngFor="let user of contactedUsers" [class.new-message]="newMessage.includes(user.id)"> {{ user.email }} </a>
 </mat-nav-list>
 
